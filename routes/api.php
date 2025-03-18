@@ -42,3 +42,16 @@ Route::middleware(['auth:sanctum', 'role:superadmin'])->group(function () {
     Route::put('/uuser/{id}', [UUserController::class, 'update']);
     Route::delete('/uuser/{id}', [UUserController::class, 'destroy']);
 });
+
+Route::post('/forgot-password', [App\Http\Controllers\PasswordResetController::class, 'forgotPassword']);
+Route::post('/verify-code-and-reset', [App\Http\Controllers\PasswordResetController::class, 'verifyCodeAndReset']);
+
+
+// Message Routes - Add these to your routes/api.php file
+Route::middleware('auth:sanctum')->group(function () {
+    // Conversation routes
+    Route::get('/conversations', [App\Http\Controllers\ConversationController::class, 'getConversations']);
+    Route::post('/conversations', [App\Http\Controllers\ConversationController::class, 'getOrCreateConversation']);
+    Route::post('/messages', [App\Http\Controllers\ConversationController::class, 'sendMessage']);
+    Route::post('/messages/read', [App\Http\Controllers\ConversationController::class, 'markAsRead']);
+});

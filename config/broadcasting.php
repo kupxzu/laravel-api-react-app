@@ -28,25 +28,22 @@ return [
     |
     */
 
-    'connections' => [
-
-        'pusher' => [
-            'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
-            'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                'host' => env('PUSHER_HOST') ?: 'api-'.env('PUSHER_APP_CLUSTER', 'mt1').'.pusher.com',
-                'port' => env('PUSHER_PORT', 443),
-                'scheme' => env('PUSHER_SCHEME', 'https'),
-                'encrypted' => true,
-                'useTLS' => env('PUSHER_SCHEME', 'https') === 'https',
-            ],
-            'client_options' => [
-                // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
-            ],
+'connections' => [
+    // ...
+    
+    'pusher' => [
+        'driver' => 'pusher',
+        'key' => env('PUSHER_APP_KEY', 'messaging-app-key'),
+        'secret' => env('PUSHER_APP_SECRET', '25f749d8e8562ac1234abcd'),
+        'app_id' => env('PUSHER_APP_ID', 'myapp123'),
+        'options' => [
+            'cluster' => env('PUSHER_APP_CLUSTER', 'mt1'),
+            'encrypted' => true,
+            'host' => env('LARAVEL_ECHO_SERVER_HOST', '127.0.0.1'),
+            'port' => env('LARAVEL_ECHO_SERVER_PORT', 6001),
+            'scheme' => 'http'
         ],
+    ],
 
         'ably' => [
             'driver' => 'ably',
